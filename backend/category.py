@@ -7,7 +7,7 @@ from fastapi.responses import JSONResponse
 import json
 
 
-category_app=FastAPI()
+category_app=APIRouter()
 
 category_data={}
 
