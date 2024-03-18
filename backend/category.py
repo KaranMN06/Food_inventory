@@ -23,18 +23,24 @@ async def create_category(category:Category):
         print(res)
         res_key= list(res.keys())
         
-        if category_data['category_name'] in res_key:
-            return JSONResponse(content = f"{category.category_name} is already present", status_code=409)
+        if ((str(category_data['category_name'])).lower()) in res_key:
+            detail={
+                    "message": f"{category.category_name} is already present",
+                    "reason": "duplicate attribute",
+                    "referenceError": None,
+                    "code": "notFound"
+                    }
+            return JSONResponse(content = detail, status_code=409)
         
         else:
-            res[str(category.category_name)] = category_data['status']
+            res[(str(category.category_name)).lower()] = (category_data['status']).lower()
             with open(category_path,'w') as f:
                 json.dump(res,f,indent = 4)
             return JSONResponse(content = res,status_code = 201)
     else:
         with open(category_path,'w') as f:
             res_data={}
-            res_data[str(category.category_name)] = category_data['status']
+            res_data[(str(category.category_name)).lower()] = (category_data['status']).lower()
             json.dump(res_data,f,indent=4)
             
         return JSONResponse(content=res_data,status_code = 201)    
