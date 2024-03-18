@@ -44,6 +44,25 @@ async def create_category(category:Category):
             json.dump(res_data,f,indent=4)
             
         return JSONResponse(content=res_data,status_code = 201)    
-     
+
+
+'''PATCH API for category management'''
+@category_app.patch("/category-modify/",tags=['Category Management'])
+async def modify_category(category:Category):
+    
+    category_data = jsonable_encoder(category)
+    res_data={}
+    res_data[(str(category.category_name)).lower()] = (category_data['status']).lower()
+    with open(category_path,'r') as file:
+        json_data=json.load(file)
+    x=category.category_name
+    for item in json_data.keys():
+        if item==x:
+            json_data[item]=res_data[x]
+            with open(category_path,'w') as resp_file:
+                json.dump(json_data,resp_file,indent=4)
+            return JSONResponse(content=res_data,status_code = 201)
+    else:
+        return JSONResponse(content='category doesnt match',status_code = 422)        
     
     
