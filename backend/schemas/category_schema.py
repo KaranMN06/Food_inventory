@@ -5,8 +5,8 @@ from enum import Enum
 '''CATEGORY SCHEMA '''
 
 class State(str,Enum):
-    state_a = "active"
-    state_b = "inactive"
+    state_a = "available"
+    state_b = "not available"
     
 class Category(BaseModel):
     category_name:str
