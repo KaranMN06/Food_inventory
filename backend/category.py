@@ -32,6 +32,8 @@ async def create_category(category:Category):
                     }
             return JSONResponse(content = detail, status_code=409)
         
+        
+        
         else:
             res[(str(category.category_name)).lower()] = (category_data['status']).lower()
             

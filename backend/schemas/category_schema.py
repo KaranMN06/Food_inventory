@@ -9,8 +9,8 @@ class State(str,Enum):
     state_b = "not available"
     
 class Category(BaseModel):
-    category_name:str
-    status:State
+    category_name:str    
+    status:State 
     
     
 
