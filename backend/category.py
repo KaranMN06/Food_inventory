@@ -11,7 +11,7 @@ category_app=APIRouter()
 
 category_data={}
 
-category_path='C:/Users/kmysore/Desktop/project2/Food_inventory/backend/responses/category.json'
+category_path='backend\responses\category.json'
 
 @category_app.post("/category-create/",tags=['Category Management'])
 async def create_category(category:Category):

@@ -1,0 +1,22 @@
+{
+    "rice": {
+        "category_name": "rice",
+        "item_list": [
+            {
+                "item_name": "string",
+                "no_of_items": 0,
+                "price": 0
+            }
+        ]
+    },
+    "jnjn": {
+        "category_name": "jnjn",
+        "item_list": [
+            {
+                "item_name": "string",
+                "no_of_items": 0,
+                "price": 0
+            }
+        ]
+    }
+}
