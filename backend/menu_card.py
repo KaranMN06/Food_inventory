@@ -13,6 +13,9 @@ current_directory= Path(__file__).parents[0]
 response_file="menu.json"
 menu_response_file = current_directory / 'responses' / response_file
 
+category_response_file = "category.json"
+category_file_name = current_directory / 'responses' / category_response_file
+
 # menu_response_file="C:/Users/manju/OneDrive/Desktop/pro/Food_inventory/backend/responses/menu.json"
 menu_data={}
 
@@ -24,17 +27,21 @@ async def create_menu(menu:menu_request):
             res = json.load(f)
         res_key= list(res.keys())
         
-        if (menu.category_name) in res_key:
+        if (menu.category_name) not in res_key:
             detail={
-                    "message": f"{menu.category_name} is already present",
-                    "reason": "duplicate attribute",
+                    "message": f"Sorry we dont serve {menu.category_name}",
+                    "reason": "Invalid value",
                     "referenceError": None,
-                    "code": "notFound"
+                    "code": "invalid"
                     }
             return JSONResponse(content = detail, status_code=409)
         
+        
+
         else:
             # menu_data={}
+            with open(category_file_name,'r') as json_file:
+                category_data=json.load(json_file)
             menu_data[menu.category_name]=jsonable_encoder(menu)
             res.update(menu_data)
             with open(menu_response_file,'w') as f:
