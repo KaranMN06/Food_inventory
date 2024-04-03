@@ -3,6 +3,7 @@ from fastapi import APIRouter
 from schemas.category_schema import Category
 from fastapi.encoders import jsonable_encoder
 import os
+from pathlib import Path
 from fastapi.responses import JSONResponse
 import json
 
@@ -10,8 +11,10 @@ import json
 category_app=APIRouter()
 
 category_data={}
-
-category_path='backend\responses\category.json'
+current_directory= Path(__file__).parents[0]
+response_file="category.json"
+category_path = current_directory / 'responses' / response_file
+# category_path="C:/Users/manju/OneDrive/Desktop/pro/Food_inventory/backend/responses/category.json"
 
 @category_app.post("/category-create/",tags=['Category Management'])
 async def create_category(category:Category):
@@ -20,7 +23,6 @@ async def create_category(category:Category):
     if os.path.exists(category_path) and os.path.getsize(category_path) >0:
         with open(category_path,'r') as f:
             res = json.load(f)
-        print(res)
         res_key= list(res.keys())
         
         if ((str(category_data['category_name'])).lower()) in res_key:
