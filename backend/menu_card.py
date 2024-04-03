@@ -3,13 +3,17 @@ from fastapi import APIRouter
 from schemas.category_schema import menu_request
 from fastapi.encoders import jsonable_encoder
 import os
+from pathlib import Path
 from fastapi.responses import JSONResponse
 import json
 
 
 menu_card=APIRouter()
+current_directory= Path(__file__).parents[0]
+response_file="menu.json"
+menu_response_file = current_directory / 'responses' / response_file
 
-menu_response_file="C:/Users/manju/OneDrive/Desktop/pro/Food_inventory/backend/responses/menu.json"
+# menu_response_file="C:/Users/manju/OneDrive/Desktop/pro/Food_inventory/backend/responses/menu.json"
 menu_data={}
 
 @menu_card.post("/menu-card/",tags=['Menu Card'])
