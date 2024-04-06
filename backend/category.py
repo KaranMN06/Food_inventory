@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi import APIRouter
-from schemas.category_schema import Category
+from schemas.seller_side import Category
 from fastapi.encoders import jsonable_encoder
 import os
 from pathlib import Path
