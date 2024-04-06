@@ -6,9 +6,12 @@ import os
 from pathlib import Path
 from fastapi.responses import JSONResponse
 import json
+from fastapi import FastAPI, Body, Depends
+from auth import UserSchema, UserLoginSchema,JWTBearer,signJWT
 
 
 menu_card=APIRouter()
+
 current_directory= Path(__file__).parents[0]
 response_file="menu.json"
 menu_response_file = current_directory / 'responses' / response_file
@@ -16,7 +19,7 @@ menu_response_file = current_directory / 'responses' / response_file
 # menu_response_file="C:/Users/manju/OneDrive/Desktop/pro/Food_inventory/backend/responses/menu.json"
 menu_data={}
 
-@menu_card.post("/menu-card/",tags=['Menu Card'])
+@menu_card.post("/menu-card/",dependencies=[Depends(JWTBearer())],tags=['Menu Card'])
 async def create_menu(menu:menu_request):
     # menu_data = jsonable_encoder(menu)
     if os.path.exists(menu_response_file) and os.path.getsize(menu_response_file) >0:
