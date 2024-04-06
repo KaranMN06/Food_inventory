@@ -72,7 +72,6 @@ async def create_menu(menu:menu_request):
     for i in file_items:
         file_lst.append(i['item_name'])
         
-    print(file_lst)
     
     request_items = jsonable_encoder(menu)
     request_items=request_items['item_list']
@@ -83,8 +82,7 @@ async def create_menu(menu:menu_request):
         if i['item_name'] in file_lst:
             count=count+1
     
-    print(count)
-    print(request_lst)  
+
     if count > 0:
             detail={
                     "message": f"{request_lst}  is already present",
@@ -113,4 +111,4 @@ async def create_menu(menu:menu_request):
         with open(menu_response_file,'r') as f:
                 data = json.load(f)
         return JSONResponse(content=data[str(menu.category_name)],status_code=201)
-    
+     
