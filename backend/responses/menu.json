@@ -3,7 +3,67 @@
         "category_name": "rice",
         "item_list": [
             {
-                "item_name": "njnj",
+                "item_name": "rice",
+                "no_of_items": 0,
+                "price": 0
+            },
+            {
+                "item_name": "chats",
+                "no_of_items": 0,
+                "price": 0
+            },
+            {
+                "item_name": "string",
+                "no_of_items": 0,
+                "price": 0
+            }
+        ]
+    },
+    "jnjn": {
+        "category_name": "jnjn",
+        "item_list": [
+            {
+                "item_name": "string",
+                "no_of_items": 0,
+                "price": 0
+            }
+        ]
+    },
+    "qwerty": {
+        "category_name": "qwerty",
+        "item_list": [
+            {
+                "item_name": "string",
+                "no_of_items": 0,
+                "price": 0
+            }
+        ]
+    },
+    "dfgh": {
+        "category_name": "dfgh",
+        "item_list": [
+            {
+                "item_name": "string",
+                "no_of_items": 0,
+                "price": 0
+            }
+        ]
+    },
+    "456": {
+        "category_name": "456",
+        "item_list": [
+            {
+                "item_name": "string",
+                "no_of_items": 0,
+                "price": 0
+            }
+        ]
+    },
+    "string": {
+        "category_name": "string",
+        "item_list": [
+            {
+                "item_name": "string",
                 "no_of_items": 0,
                 "price": 0
             }
