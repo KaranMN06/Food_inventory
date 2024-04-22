@@ -1,59 +1,9 @@
 {
-    "rice": {
-        "category_name": "rice",
+    "north indian": {
+        "category_name": "north indian",
         "item_list": [
             {
-                "item_name": "rice",
-                "no_of_items": 0,
-                "price": 0
-            },
-            {
-                "item_name": "chats",
-                "no_of_items": 0,
-                "price": 0
-            },
-            {
-                "item_name": "string",
-                "no_of_items": 0,
-                "price": 0
-            }
-        ]
-    },
-    "jnjn": {
-        "category_name": "jnjn",
-        "item_list": [
-            {
-                "item_name": "string",
-                "no_of_items": 0,
-                "price": 0
-            }
-        ]
-    },
-    "qwerty": {
-        "category_name": "qwerty",
-        "item_list": [
-            {
-                "item_name": "string",
-                "no_of_items": 0,
-                "price": 0
-            }
-        ]
-    },
-    "dfgh": {
-        "category_name": "dfgh",
-        "item_list": [
-            {
-                "item_name": "string",
-                "no_of_items": 0,
-                "price": 0
-            }
-        ]
-    },
-    "456": {
-        "category_name": "456",
-        "item_list": [
-            {
-                "item_name": "string",
+                "item_name": "abcd",
                 "no_of_items": 0,
                 "price": 0
             }
@@ -63,7 +13,7 @@
         "category_name": "string",
         "item_list": [
             {
-                "item_name": "string",
+                "item_name": "abcd",
                 "no_of_items": 0,
                 "price": 0
             }

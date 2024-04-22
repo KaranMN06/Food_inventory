@@ -24,9 +24,9 @@ menu_data={}
 
 @menu_card.post("/menu-card/",dependencies=[Depends(JWTBearer())],tags=['Menu Card'])
 async def create_menu(menu:menu_request):
-    # menu_data = jsonable_encoder(menu)
-    if os.path.exists(menu_response_file) and os.path.getsize(menu_response_file) >0:
-        with open(menu_response_file,'r') as f:
+    menu_card  = {}
+    if os.path.exists(category_file_name) and os.path.getsize(category_file_name) >0:
+        with open(category_file_name,'r') as f:
             res = json.load(f)
         res_key= list(res.keys())  # check from category.json not from menu.json for existing category u have to post 
         
@@ -42,22 +42,39 @@ async def create_menu(menu:menu_request):
         
 
         else:
-            # menu_data={}
-            with open(category_file_name,'r') as json_file:
-                category_data=json.load(json_file)
-            menu_data[menu.category_name]=jsonable_encoder(menu)
-            res.update(menu_data)
-            with open(menu_response_file,'w') as f:
-                json.dump(res,f,indent = 4)
-            return JSONResponse(content = menu_data,status_code = 201)
+            with open(menu_response_file,'r') as file:
+                data=json.load(file)
+            if menu.category_name in data:
+                detail={
+                    "message": f"{menu.category_name}  is already present, please use /update-menu-list to update the menu",
+                    "reason": "duplicate attribute",
+                    "referenceError": None,
+                    "code": "notFound"
+                    }
+                return JSONResponse(content = detail, status_code=404)
+            
+            else:
+                 # menu_data={}
+                menu_data[menu.category_name]=jsonable_encoder(menu)
+                menu_card.update(menu_data)
+                with open(menu_response_file,'w') as f:
+                    json.dump(menu_card,f,indent = 4)
+                return JSONResponse(content = menu_data,status_code = 201)
             
     else:
-        with open(menu_response_file,'w') as file:
-            # menu_data={}
-            menu_data[menu.category_name] = jsonable_encoder(menu)
-            json.dump(menu_data,file,indent=4)
+        detail={
+                "message": f"Sorry we dont serve {menu.category_name}",
+                "reason": "Invalid value",
+                "referenceError": None,
+                "code": "invalid"
+                }
+        return JSONResponse(content = detail, status_code=409)
+        # with open(menu_response_file,'w') as file:
+        #     menu_data={}
+        #     menu_data[menu.category_name] = jsonable_encoder(menu)
+        #     json.dump(menu_data,file,indent=4)
             
-        return JSONResponse(content=menu_data,status_code = 201) 
+        # return JSONResponse(content=menu_data,status_code = 201) 
     
     
 @menu_card.post("/update-menu-list/",tags=['Menu Card'])
